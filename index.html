@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zikir Matik</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="zikir-matik">
+            <div class="screen" id="zikirScreen">0</div>
+            <div class="button" onclick="incrementCount()">Ekle</div>
+        </div>
+        <div class="count" id="count">Zikir Sayısı: 0</div>
+        <div class="zikir-type">
+            <select id="zikirType">
+                <option value="Subhanallah">Subhanallah</option>
+                <option value="Alhamdulillah">Alhamdulillah</option>
+                <option value="Allahu Akbar">Allahu Akbar</option>
+            </select>
+        </div>
+        <div class="input-container">
+            <input type="number" id="target" placeholder="Hedef" min="1">
+        </div>
+        <button class="button" onclick="incrementCount()">Zikir Ekle</button>
+        <button class="button reset" onclick="resetCount()">Sıfırla</button>
+        <button class="button theme-toggle" onclick="toggleTheme()">Tema Değiştir</button>
+        <div class="remaining" id="remaining"></div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="service-worker.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(registration => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch(error => {
+                    console.log('Service Worker registration failed:', error);
+                });
+        }
+    </script>
+</body>
+</html>
